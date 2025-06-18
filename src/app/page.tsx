@@ -22,21 +22,23 @@ export default function Page() {
   const [data, setData] = useState<SensorData[]>([]);
 
 useEffect(() => {
-  fetch('https://plant-sensor-app-chvvm7t.azurewebsites.net/sensor')
+  fetch("https://plant-sensor-app-chvvm7t.azurewebsites.net/sensor")
     .then((res) => res.json())
     .then((data: SensorData[]) => {
       const transformed = data.map((item) => ({
         ...item,
-        // ⏰ Nur Uhrzeit anzeigen – oder du nimmst `.toLocaleString()` für Datum+Uhrzeit
         timestamp: new Date(item.timestamp).toLocaleTimeString("de-CH", {
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
         }),
       }));
-      console.log("Umgewandelte Daten:", transformed);
+
+      console.log("Umgewandelte Daten für das Diagramm:", transformed);
       setData(transformed);
-      console.log("Frontend-Daten für das Diagramm:", data);
+    })
+    .catch((error) => {
+      console.error("Fehler beim Datenladen:", error);
     });
 }, []);
 
