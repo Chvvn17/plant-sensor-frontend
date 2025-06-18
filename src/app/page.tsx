@@ -27,7 +27,7 @@ useEffect(() => {
     .then((data: SensorData[]) => {
       const transformed = data.map((item, index) => ({
         ...item,
-        feuchtigkeit: item.feuchtigkeit + (index % 3), // ⬅ künstliche Unterschiede
+        feuchtigkeit: item.feuchtigkeit,
         timestamp: new Date(item.timestamp).toLocaleTimeString("de-CH", {
           hour: "2-digit",
           minute: "2-digit",
