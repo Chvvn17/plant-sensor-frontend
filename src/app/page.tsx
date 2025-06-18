@@ -25,7 +25,7 @@ useEffect(() => {
   fetch("https://plant-sensor-app-chvvn17.azurewebsites.net/sensor")
     .then((res) => res.json())
     .then((data: SensorData[]) => {
-      const transformed = data.map((item, index) => ({
+      const transformed = data.map((item) => ({
         ...item,
         feuchtigkeit: item.feuchtigkeit,
         timestamp: new Date(item.timestamp).toLocaleTimeString("de-CH", {
