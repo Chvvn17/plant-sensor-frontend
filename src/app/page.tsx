@@ -22,7 +22,7 @@ export default function Page() {
   const [data, setData] = useState<SensorData[]>([]);
 
 useEffect(() => {
-  fetch("https://plant-sensor-app-chvvm7t.azurewebsites.net/sensor")
+  fetch("https://plant-sensor-app-chvvn17.azurewebsites.net/sensor")
     .then((res) => res.json())
     .then((data: SensorData[]) => {
       const transformed = data.map((item, index) => ({
