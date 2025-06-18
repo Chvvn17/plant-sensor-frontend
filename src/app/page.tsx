@@ -25,20 +25,16 @@ useEffect(() => {
   fetch("https://plant-sensor-app-chvvm7t.azurewebsites.net/sensor")
     .then((res) => res.json())
     .then((data: SensorData[]) => {
-      const transformed = data.map((item) => ({
+      const transformed = data.map((item, index) => ({
         ...item,
+        feuchtigkeit: item.feuchtigkeit + (index % 3), // ⬅ künstliche Unterschiede
         timestamp: new Date(item.timestamp).toLocaleTimeString("de-CH", {
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
         }),
       }));
-
-      console.log("Umgewandelte Daten für das Diagramm:", transformed);
       setData(transformed);
-    })
-    .catch((error) => {
-      console.error("Fehler beim Datenladen:", error);
     });
 }, []);
 
